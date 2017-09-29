@@ -14,3 +14,9 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+// フラッシュメッセージを隠す
+$(function() {
+  $('.both').slideUp(5000);
+  $('.alert').slideUp(5000);
+});

@@ -1,3 +1,33 @@
-%h1 New Group
-= render 'form', group: @group
-= link_to 'Back', groups_path
+%div.chat-group-form
+  %h1 新規チャットグループ
+
+  = form_for @group do |f|
+    - if @group.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@group.errors.count, "error")} prohibited this group from being saved:"
+        %ul
+          - @group.errors.full_messages.each do |message|
+            %li= message
+
+    %div.chat-group-form__field.clearfix
+      %div.chat-group-form__field--left
+        = f.label :NAME,class:"chat-group-form__label",for:"chat_group_name"
+      %div.chat-group-form__field--right
+        = f.text_field :name,class:"chat-group-form__input",id:"chat_group_name"
+    -# %div.chat-group-form__field.clearfix
+    -#   %div.chat-group-form__field--left
+    -#     = f.label :チャットメンバーを追加,class:"chat-group-form__label",for:"chat_group_チャットメンバーを追加"
+    -#   %div.chat-group-form__field--right
+    -#     = f.text_field :name,class:"chat-group-form__input"
+
+    %div.chat-group-form__field.clearfix
+      %div.chat-group-form__field--left
+        = f.label :チャットメンバー,class:"chat-group-form__label"
+      %div.chat-group-form__field--right
+        = collection_check_boxes(:group, :user_ids, User.all, :id, :name) do |b|
+          = b.label {b.check_box + b.text}
+
+    %div.chat-group-form__field.clearfix
+      %div.chat-group-form__field--left
+      %div.chat-group-form__field--right
+        = f.submit 'Save',class:"chat-group-form__action-btn"
