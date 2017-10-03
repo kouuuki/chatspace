@@ -4,13 +4,18 @@ class MessagesController < ApplicationController
 
   def top
     @user_groups = Group.joins(:users).uniq
-    @message = Message.new
+    #@message = Message.new
   end
 
   # GET /messages
   # GET /messages.json
   def index
+    #メッセージ本文
     @messages = Message.all
+    @group = Group.find(params[:group_id])
+    #サイドバー
+    @groups = Group.all
+    @user = User.find(current_user.id)
   end
 
   # GET /messages/1
@@ -20,7 +25,9 @@ class MessagesController < ApplicationController
 
   # GET /messages/new
   def new
-    @message = Message.new
+    @group = Group.where(:id => params[:group_id]).first
+    @message = @group.messages.build
+    #@message = Message.new
   end
 
   # GET /messages/1/edit
@@ -31,6 +38,11 @@ class MessagesController < ApplicationController
   # POST /messages.json
   def create
     @message = Message.new(message_params)
+    @group = Group.where(:id => params[:group_id]).first
+    @message = @group.messages.build
+    @message.user_id = current_user.id
+    @message.body = message_params[:body]
+    @message.image = message_params[:image]
 
     respond_to do |format|
       if @message.save
@@ -75,6 +87,6 @@ class MessagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
-      params.require(:message).permit(:body, :image, :group_id, :user_id)
+      params.require(:message).permit(:body, :image, :group_id)
     end
 end

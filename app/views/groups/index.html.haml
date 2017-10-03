@@ -1,16 +1,40 @@
-%p#notice= notice
-%h1 Groups
-%table
-  %thead
-    %tr
-      %th Name
-      %th{:colspan => "3"}
-  %tbody
-    - @groups.each do |group|
-      %tr
-        %td= group.name
-        %td= link_to 'Show', group
-        %td= link_to 'Edit', edit_group_path(group)
-        %td= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' }
-%br/
-= link_to 'New Group', new_group_path
+-# %p#notice= notice
+-# %h1 Groups
+-# %table
+-#   %thead
+-#     %tr
+-#       %th Name
+-#       %th{:colspan => "3"}
+-#   %tbody
+-#     - @groups.each do |group|
+-#       %tr
+-#         %td= group.name
+-#         %td= link_to 'Show', group
+-#         %td= link_to 'Edit', edit_group_path(group)
+-#         %td= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' }
+-# %br/
+-# = link_to 'New Group', new_group_path
+
+// 画面左
+%div.section-left
+  %div.section-left-top
+    %span.user-name=current_user.name
+    =link_to "",edit_user_path(current_user.id),class:"fa fa-cog fa-lg fa-spin"
+    =link_to "",new_group_path,class:"fa fa-plus-square-o fa-lg"
+  // 所属しているグループを表示
+  %div.section-left-bottom
+    %ul.group-list
+      -@user.groups.each do |group|
+        %li.select-group=link_to group.name,group_messages_path(group),class:"group-url"
+
+// 画面右
+%div.section-right
+  %div.section-right-top
+  %div.section-right-bottom#messagearea
+  %div.sent-area
+    %div.form-controll
+      %input.message-form
+      %i.fa.fa-picture-o.fa-lg
+      %a.square_btn SENT
+    -# = form_for message do |f|
+    -#   = f.text_field :body,class:"chat-group-form__input",id:"chat_group_name"

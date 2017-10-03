@@ -1,10 +1,12 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /groups
   # GET /groups.json
   def index
     @groups = Group.all
+    @user = User.find(current_user.id)
   end
 
   # GET /groups/1
@@ -29,7 +31,7 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       if @group.save
-        format.html { redirect_to @group, notice: 'Group was successfully created.' }
+        format.html { redirect_to root_path, notice: 'グループを作成しました' }
         format.json { render :show, status: :created, location: @group }
       else
         format.html { render :new }
@@ -60,6 +62,11 @@ class GroupsController < ApplicationController
       format.html { redirect_to groups_url, notice: 'Group was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def search
+    @users = User.where('name LIKE(?)', "%#{params[:keyword]}%")
+    render json: @users
   end
 
   private
