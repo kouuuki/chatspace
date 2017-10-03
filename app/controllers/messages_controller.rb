@@ -12,10 +12,13 @@ class MessagesController < ApplicationController
   def index
     #メッセージ本文
     @messages = Message.all
-    @group = Group.find(params[:group_id])
+    @groupa = Group.find(params[:group_id])
     #サイドバー
     @groups = Group.all
     @user = User.find(current_user.id)
+    #メッセージ生成
+    @group = Group.where(:id => params[:group_id]).first
+    @message = @group.messages.build
   end
 
   # GET /messages/1

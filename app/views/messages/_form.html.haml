@@ -1,3 +1,28 @@
+-# = form_for [@group,@message] do |f|
+-#   - if @message.errors.any?
+-#     #error_explanation
+-#       %h2= "#{pluralize(@message.errors.count, "error")} prohibited this message from being saved:"
+-#       %ul
+-#         - @message.errors.full_messages.each do |message|
+-#           %li= message
+-#
+-#   .field
+-#     = f.label :body
+-#     = f.text_area :body
+-#   .field
+-#     = f.label :image
+-#     = f.text_field :image
+-#   .field
+-#     = f.label :group_id
+-#     = f.number_field :group_id
+-#   .field
+-#     = f.label :user_id
+-#     = f.number_field :user_id
+-#   .actions
+-#     = f.submit 'Save'
+-#
+-# %br
+
 = form_for [@group,@message] do |f|
   - if @message.errors.any?
     #error_explanation
@@ -7,16 +32,8 @@
           %li= message
 
   .field
-    = f.label :body
-    = f.text_area :body
+    = f.text_area :body,class:"form-controll"
   .field
-    = f.label :image
-    = f.text_field :image
-  .field
-    = f.label :group_id
-    = f.number_field :group_id
-  .field
-    = f.label :user_id
-    = f.number_field :user_id
+    = f.file_field :image,class:"fa fa-picture-o"
   .actions
-    = f.submit 'Save'
+    %a= f.submit 'Save',class:"square_btn"

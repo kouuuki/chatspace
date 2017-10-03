@@ -29,7 +29,7 @@
     background: #2f3e51;
     .group-list{
       height: 100%;
-      padding: 0 15px;
+      padding: 0 5px;
       color: white;
       .group-url{
         height: 100%;
@@ -38,7 +38,7 @@
       }
       li{
         // line-height: 100%;
-        padding: 10px;
+        //padding: 10px;
         // グループ選択のリンクの色を変更
         a{
           text-decoration: none;
@@ -50,6 +50,10 @@
       }
     }
   }
+}
+.last-message{
+  font-size: 10px;
+  margin-bottom: 50px;
 }
 
 // 画面右
@@ -68,8 +72,8 @@
     height: 20%;
     background: #AAAAAA;
     .form-controll{
-      width: 100%;
-      height: 100%;
+      // width: 100%;
+      // height: 100%;
       .message-form{
         width: 75%;
         margin: auto;
@@ -96,7 +100,8 @@
       }
       .square_btn:active {/*ボタンを押したとき*/ -ms-transform: translateY(4px);
         -webkit-transform: translateY(4px);
-        transform: translateY(4px);/*下に動く*/ border-bottom: none;/*線を消す*/ }
+        transform: translateY(4px);/*下に動く*/ border-bottom: none;/*線を消す*/
+      }
       }
     .chat-group-form__input {
       float: left;
