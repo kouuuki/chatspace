@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_correct_user, only: [:index]
   before_action :authenticate_user!
 
   def top
@@ -49,7 +50,7 @@ class MessagesController < ApplicationController
 
     respond_to do |format|
       if @message.save
-        format.html { redirect_to @message, notice: 'Message was successfully created.' }
+        format.html { redirect_to group_messages_path(params[:group_id]), notice: 'メッセージを送信しました' }
         format.json { render :show, status: :created, location: @message }
       else
         format.html { render :new }
@@ -91,5 +92,13 @@ class MessagesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
       params.require(:message).permit(:body, :image, :group_id)
+    end
+
+    #自分の所属しているグループ以外には入れない
+    def ensure_correct_user
+      if Member.where(user_id: current_user.id ,group_id: params[:group_id]).length == 0
+        flash[:notice] = "かーえーれー"
+        redirect_to root_path
+      end
     end
 end

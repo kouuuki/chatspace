@@ -43,6 +43,7 @@
         <% end %>
         <!-- グループ作成機能の追加時はここにcollection_check_boxesの記述を入れてください  -->
         <%= f.submit 'Save',class:"chat-group-form__action-btn" %>
+        <%= link_to 'グループの削除',group_path(params[:id]),class:"chat-group-form__action-btn-delete",method: :delete, data: { confirm: 'このグループを削除しますか？' } %>
         <!-- <input type="submit" name="commit" value="Save" class="chat-group-form__action-btn" data-disable-with="Save" /> -->
       </div>
     </div>

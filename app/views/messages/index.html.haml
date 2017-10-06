@@ -1,39 +1,10 @@
--# %h1 Listing messages
--#
--# %table
--#   %thead
--#     %tr
--#       %th Body
--#       %th Image
--#       %th Group
--#       %th User
--#       %th
--#       %th
--#       %th
--#
--#   %tbody
--#     - @messages.each do |message|
--#       %tr
--#         %td= message.body
--#         %td= message.image
--#         %td= message.group_id
--#         %td= message.user_id
--#         %td= link_to 'Show', message
--#         %td= link_to 'Edit', edit_message_path(message)
--#         %td= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' }
--#
--# %br
--#
--# = link_to 'New Message', new_group_message_path
-
 =render 'groups/sidebar'
 
 %div.section-right
   %div.section-right-top
     %div.group-name
-      =@groupa.name
-      %br
-        %span Member
+      %p=@groupa.name
+      %span Member：
       - @groupa.users.each do |user|
         %i=user.name
     =link_to "Edit",edit_group_path(params[:group_id]),class:"edit"
@@ -43,13 +14,9 @@
       - @groupa.messages.each do |message|
         =message.user.name
         %i.time=message.created_at.strftime("%Y/%m/%d %H:%M:%S")
-        %div.message=message.body
+        %div.message=simple_format(message.body)
         =image_tag message.image
 
   -#メッセージ送信エリア
   %div.sent-area
     =render 'form'
-    -# %div.form-controll
-    -#   %input.message-form
-    -#   %i.fa.fa-picture-o.fa-lg
-    -#   %a.square_btn SENT

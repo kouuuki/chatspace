@@ -1,11 +1,11 @@
 //メイン画面CSS START
 
-// 画面左
+// サイドバー
 .section-left{
   width: 20%;
   height: 100%;
   float: left;
-  .section-left-top{
+  &-top{
     height: 20%;
     color: white;
     padding: 0 30px;
@@ -23,7 +23,7 @@
       text-decoration: none;
     }
   }
-  .section-left-bottom{
+  &-bottom{
     height: 80%;
     overflow: scroll;
     background: #2f3e51;
@@ -37,9 +37,6 @@
         display: block;
       }
       li{
-        // line-height: 100%;
-        //padding: 10px;
-        // グループ選択のリンクの色を変更
         a{
           text-decoration: none;
           color: white;
@@ -72,8 +69,6 @@
     height: 20%;
     background: #AAAAAA;
     .form-controll{
-      // width: 100%;
-      // height: 100%;
       .message-form{
         width: 75%;
         margin: auto;
@@ -237,5 +232,13 @@
     color: #fff;
     background-color: #38aef0;
     border: 0;
+  }
+  .chat-group-form__action-btn-delete{
+    display: inline-block;
+    padding: 12px 20px;
+    color: #fff;
+    background-color: #ea5550;
+    border: 0;
+    text-decoration: none;
   }
 }

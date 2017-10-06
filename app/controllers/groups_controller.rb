@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_correct_user, only: [:edit]
   before_action :authenticate_user!
 
   # GET /groups
@@ -45,7 +46,7 @@ class GroupsController < ApplicationController
   def update
     respond_to do |format|
       if @group.update(group_params)
-        format.html { redirect_to @group, notice: 'Group was successfully updated.' }
+        format.html { redirect_to group_messages_path(params[:id]), notice: 'グループ情報を更新しました' }
         format.json { render :show, status: :ok, location: @group }
       else
         format.html { render :edit }
@@ -78,5 +79,13 @@ class GroupsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
       params.require(:group).permit(:name, {:user_ids => []})
+    end
+
+    #自分の所属しているグループ以外は編集できない
+    def ensure_correct_user
+      if Member.where(user_id: current_user.id ,group_id: params[:id]).length == 0
+        flash[:notice] = "かーえーれー"
+        redirect_to root_path
+      end
     end
 end

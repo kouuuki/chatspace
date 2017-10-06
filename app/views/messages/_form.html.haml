@@ -24,16 +24,14 @@
 -# %br
 
 = form_for [@group,@message] do |f|
-  - if @message.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@message.errors.count, "error")} prohibited this message from being saved:"
-      %ul
-        - @message.errors.full_messages.each do |message|
-          %li= message
+  -# - if @message.errors.any?
+  -#   #error_explanation
+  -#     %h2= "#{pluralize(@message.errors.count, "error")} prohibited this message from being saved:"
+  -#     %ul
+  -#       - @message.errors.full_messages.each do |message|
+  -#         %li= message
 
   .field
     = f.text_area :body,class:"form-controll"
-  .field
     = f.file_field :image,class:"fa fa-picture-o"
-  .actions
     %a= f.submit 'Save',class:"square_btn"
