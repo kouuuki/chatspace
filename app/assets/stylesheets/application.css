@@ -15,7 +15,7 @@
  *= require font-awesome
  */
  /*リセットcssをインポート*/
-@import "reset";
+@import "./reset";
 
 
 html,body{
