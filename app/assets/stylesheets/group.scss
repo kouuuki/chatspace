@@ -1,11 +1,11 @@
-//メイン画面CSS START
+// メイン画面CSS
 
 // サイドバー
 .section-left{
   width: 20%;
   height: 100%;
   float: left;
-  &-top{
+  &-top{  // サイドバー上部
     height: 20%;
     color: white;
     padding: 0 30px;
@@ -23,7 +23,7 @@
       text-decoration: none;
     }
   }
-  &-bottom{
+  &-bottom{  // サイドバー下部
     height: 80%;
     overflow: scroll;
     background: #2f3e51;
@@ -58,58 +58,57 @@
   width: 80%;
   height: 100%;
   float: right;
-  .section-right-top{
+  &-top{  // 画面右上部
     height: 10%;
   }
-  .section-right-bottom{
-    height: 70%;
+  &-bottom{  // 画面右下部
+    height: 90%;
     background: #f5f5f5;
   }
-  .sent-area{
-    height: 20%;
-    background: #AAAAAA;
-    .form-controll{
-      .message-form{
-        width: 75%;
-        margin: auto;
-        margin: 25px 0 0 30px;
-        padding: 15px;
-        float: left;
-        border-style: none;
-      }
-      .fa{
-        margin-top: 25px;
-        padding: 19px 5px;
-        background-color: white;
-        border-style: none;
-      }
-      .square_btn{
-        float: right;
-        display: inline-block;
-        margin: 20px 30px 0 0;
-        padding: 1em 1.8em;
-        text-decoration: none;
-        background: #668ad8;/*ボタン色*/ color: #FFF;
-        border-bottom: solid 4px #627295;
-        border-radius: 3px;
-      }
-      .square_btn:active {/*ボタンを押したとき*/ -ms-transform: translateY(4px);
-        -webkit-transform: translateY(4px);
-        transform: translateY(4px);/*下に動く*/ border-bottom: none;/*線を消す*/
-      }
-      }
-    .chat-group-form__input {
-      float: left;
-      width: 100%;
-      line-height: 30px;
-      box-sizing: border-box;
-
-    }
-  }
+  // .sent-area{
+  //   height: 20%;
+  //   background: #AAAAAA;
+  //   .form-controll{
+  //     .message-form{
+  //       width: 75%;
+  //       margin: auto;
+  //       margin: 25px 0 0 30px;
+  //       padding: 15px;
+  //       float: left;
+  //       border-style: none;
+  //     }
+  //     .fa{
+  //       margin-top: 25px;
+  //       padding: 19px 5px;
+  //       background-color: white;
+  //       border-style: none;
+  //     }
+  //     .square_btn{
+  //       float: right;
+  //       display: inline-block;
+  //       margin: 20px 30px 0 0;
+  //       padding: 1em 1.8em;
+  //       text-decoration: none;
+  //       background: #668ad8;/*ボタン色*/ color: #FFF;
+  //       border-bottom: solid 4px #627295;
+  //       border-radius: 3px;
+  //     }
+  //     .square_btn:active {/*ボタンを押したとき*/ -ms-transform: translateY(4px);
+  //       -webkit-transform: translateY(4px);
+  //       transform: translateY(4px);/*下に動く*/ border-bottom: none;/*線を消す*/
+  //     }
+  //     }
+  //   .chat-group-form__input {
+  //     float: left;
+  //     width: 100%;
+  //     line-height: 30px;
+  //     box-sizing: border-box;
+  //
+  //   }
+  // }
 }
 
-//メイン画面CSS END
-
+//チャットグループ画面
 .chat-group-form {
   width: 980px;
   margin: 60px auto;

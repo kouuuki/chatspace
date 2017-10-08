@@ -2,12 +2,13 @@
 
 %div.section-right
   %div.section-right-top
-    %div.group-name
+    %div.group-name-left
       %p=@groupa.name
       %span Member：
       - @groupa.users.each do |user|
         %i=user.name
-    =link_to "Edit",edit_group_path(params[:group_id]),class:"edit"
+    %div.group-name-rigth
+      =link_to "Edit",edit_group_path(params[:group_id]),class:"edit"
   -# メッセージ一覧
   %div.section-right-bottom
     %div.message-area
@@ -15,7 +16,10 @@
         =message.user.name
         %i.time=message.created_at.strftime("%Y/%m/%d %H:%M:%S")
         %div.message=simple_format(message.body)
-        =image_tag message.image
+        - unless message.image.length == 0
+          =image_tag message.image,class:"image"
+          %br
+
 
   -#メッセージ送信エリア
   %div.sent-area

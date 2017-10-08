@@ -31,7 +31,9 @@
   -#       - @message.errors.full_messages.each do |message|
   -#         %li= message
 
-  .field
-    = f.text_area :body,class:"form-controll"
-    = f.file_field :image,class:"fa fa-picture-o"
-    %a= f.submit 'Save',class:"square_btn"
+  .message-field
+    = f.text_area :body, class:"form-controll", placeholder:"Type a Message"
+    = f.label :i, class: "fa fa-picture-o"
+    = f.file_field :image, style:"display:none;"
+    .btm-area
+      = f.submit 'Save',class:"square_btn"

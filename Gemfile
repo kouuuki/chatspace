@@ -5,13 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'rails_12factor', group: :production
-gem 'pg', group: :production
-gem 'carrierwave'
-gem 'mini_magick'
-gem 'font-awesome-rails'
-gem 'haml-rails'
-gem 'devise'
+
 gem 'hirb'
 gem 'hirb-unicode'
 gem 'pry'
@@ -62,3 +56,12 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+
+gem 'rails_12factor', group: :production
+gem 'pg', group: :production
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'font-awesome-rails'
+gem 'haml-rails'
+gem 'devise'

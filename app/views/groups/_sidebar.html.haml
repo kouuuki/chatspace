@@ -1,9 +1,9 @@
 %div.section-left
   %div.section-left-top
-    %span.user-name=current_user.name
-    =link_to "",edit_user_path(current_user.id),class:"fa fa-cog fa-lg fa-spin"
-    =link_to "",new_group_path,class:"fa fa-plus-square-o fa-lg"
-  // 所属しているグループを表示
+    %span.user-name=current_user.name # 名前
+    =link_to "",edit_user_path(current_user.id),class:"fa fa-cog"
+    =link_to "",new_group_path,class:"fa fa-plus-square-o"
+  // 所属しているグループとメッセージを表示
   %div.section-left-bottom
     %ul.group-list
       -@user.groups.each do |group|

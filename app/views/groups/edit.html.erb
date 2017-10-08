@@ -4,7 +4,7 @@
   <form class="edit_chat_group" id="edit_chat_group_22" action="/chat_groups/22" accept-charset="UTF-8" method="post">
     <% if @group.errors.any? %>
       <div class="chat-group-form__errors">
-        <% group.errors.full_messages.each do |message| %>
+        <% @group.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </div>

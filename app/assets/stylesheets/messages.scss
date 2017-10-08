@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-// 画面左
+// サイドバー
 .section-left{
   width: 20%;
   height: 100%;
@@ -14,11 +14,11 @@
     background: #253141;
     .user-name{
       float: left;
-      margin-top: 25%;
+      margin-top: 23%;
     }
     .fa{
       float: right;
-      margin-top: 25%;
+      margin-top: 23%;
       margin-left: 5px;
       color: white;
       text-decoration: none;
@@ -33,10 +33,8 @@
       color: white;
       .select-group{
         padding: 10px 0;
-
         a{
         }
-        // margin-bottom: 30px;
       }
     }
   }
@@ -47,14 +45,14 @@
   width: 80%;
   height: 100%;
   float: right;
-  .section-right-top{
+  .section-right-top{ // 画面右上部
     height: 15%;
     padding: 0 40px;
-    .group-name{
+    .group-name-left{ //グループの名前
       height: 100%;
-      width: 300px;
+      width: 50%;
       font-size: 18px;
-      padding: 0 25px;
+      //padding: 0 25px;
       float: left;
       p{
         font-size: 24px;
@@ -73,16 +71,26 @@
         margin-right: 5px;
       }
     }
-    .edit{
+    .group-name-rigth{
+      height: 100%;
+      width: 50%;
       float: right;
-      text-decoration: none;
-      color: #38AEF0;
-      border: 1px solid #38AEF0;
-      padding: 10px 20px;
-      margin-top: 30px;
+      .edit{ // グループ編集ボタン
+        float: right;
+        text-decoration: none;
+        color: #38AEF0;
+        border: 1px solid #38AEF0;
+        padding: 10px 20px;
+        margin-top: 30px;
+      }
+    }
+    @media (max-width:670px){
+      span,i{
+        display: none;
+      }
     }
   }
-  .section-right-bottom{
+  .section-right-bottom{ // 画面右下部
     height: 70%;
     background: #f5f5f5;
     overflow: scroll;
@@ -96,12 +104,16 @@
         font-size: 12px;
         opacity: 0.5;
       }
+      .image{
+        width: 450px;
+        height: 350px;
+      }
     }
   }
-  .sent-area{
+  .sent-area{ // メッセージ送信部分
     height: 15%;
-    background: #AAAAAA;
-    .chat-group-form__input {
+    background: #cccccc;
+    .chat-group-form__input { // テキスト入力部分
       float: left;
       width: 100%;
       line-height: 30px;
@@ -111,34 +123,40 @@
 }
 
 //メッセージフォーム
-.field{
-  padding: 0 40px;
+.message-field{
+  width: 90%;
+  height: 100%;
+  margin: auto;
   .fa-picture-o{
-    display: none;
+    width: 20px;
+    height: 20px;
   }
   .form-controll{
     width: 80%;
-    margin-top: 25px;
+    //margin-top: 25px;
     font-size: 14px;
+    height: 54px;
+    border-style: none;
+    margin-top: 25px;
   }
-  .actions{
+  .btm-area{
+    width: 15%;
+    margin-top: 25px;
     float: right;
-
-    display: inline;
+    //メッセージボタン
+    .square_btn{
+      //margin: 20px 30px 0 0;
+      padding: 0.9em 1.8em;
+      // padding: 10px 3%;
+      text-decoration: none;
+      text-align: center;
+      background: #38AEF0; color: #FFF;
+      //border-bottom: solid 4px #627295;
+      border-radius: 3px;
+    }
+    .square_btn:active { -ms-transform: translateY(4px);
+      -webkit-transform: translateY(4px);
+      transform: translateY(4px); border-bottom: none;
+    }
   }
-}
-//メッセージボタン
-.square_btn{
-  float: right;
-  display: inline-block;
-  margin: 20px 30px 0 0;
-  padding: 1em 1.8em;
-  text-decoration: none;
-  background: #668ad8;/*ボタン色*/ color: #FFF;
-  border-bottom: solid 4px #627295;
-  border-radius: 3px;
-}
-.square_btn:active {/*ボタンを押したとき*/ -ms-transform: translateY(4px);
-  -webkit-transform: translateY(4px);
-  transform: translateY(4px);/*下に動く*/ border-bottom: none;/*線を消す*/
 }

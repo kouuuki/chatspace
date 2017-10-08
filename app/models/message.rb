@@ -3,7 +3,7 @@ class Message < ApplicationRecord
   belongs_to :user
 
   validates :body,presence: true
-  validates :body, length: { maximum: 300 }
+  validates :body, length: { maximum: 1000 }
 
   mount_uploader :image, ImageUploader
 end

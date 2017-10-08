@@ -10,12 +10,6 @@ class GroupsController < ApplicationController
     @user = User.find(current_user.id)
   end
 
-  # GET /groups/1
-  # GET /groups/1.json
-  def show
-    @member = Group.includes(:users)
-  end
-
   # GET /groups/new
   def new
     @group = Group.new
@@ -49,7 +43,7 @@ class GroupsController < ApplicationController
         format.html { redirect_to group_messages_path(params[:id]), notice: 'グループ情報を更新しました' }
         format.json { render :show, status: :ok, location: @group }
       else
-        format.html { render :edit }
+        format.html { redirect_to edit_group_path(params[:id]), notice: '保存できませんでした' }
         format.json { render json: @group.errors, status: :unprocessable_entity }
       end
     end
@@ -60,11 +54,12 @@ class GroupsController < ApplicationController
   def destroy
     @group.destroy
     respond_to do |format|
-      format.html { redirect_to groups_url, notice: 'Group was successfully destroyed.' }
+      format.html { redirect_to groups_url, notice: 'グループを削除しました' }
       format.json { head :no_content }
     end
   end
 
+  #インクリメンタルサーチ
   def search
     @users = User.where('name LIKE(?)', "%#{params[:keyword]}%")
     render json: @users

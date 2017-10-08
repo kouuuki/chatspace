@@ -1,12 +1,7 @@
 class MessagesController < ApplicationController
-  before_action :set_message, only: [:show, :edit, :update, :destroy]
+  before_action :set_message, only: [:destroy]
   before_action :ensure_correct_user, only: [:index]
   before_action :authenticate_user!
-
-  def top
-    @user_groups = Group.joins(:users).uniq
-    #@message = Message.new
-  end
 
   # GET /messages
   # GET /messages.json
@@ -22,20 +17,11 @@ class MessagesController < ApplicationController
     @message = @group.messages.build
   end
 
-  # GET /messages/1
-  # GET /messages/1.json
-  def show
-  end
-
   # GET /messages/new
   def new
     @group = Group.where(:id => params[:group_id]).first
     @message = @group.messages.build
     #@message = Message.new
-  end
-
-  # GET /messages/1/edit
-  def edit
   end
 
   # POST /messages
@@ -53,7 +39,7 @@ class MessagesController < ApplicationController
         format.html { redirect_to group_messages_path(params[:group_id]), notice: 'メッセージを送信しました' }
         format.json { render :show, status: :created, location: @message }
       else
-        format.html { render :new }
+        format.html { redirect_to group_messages_path(params[:group_id]), notice: 'メッセージを入力してください' }
         format.json { render json: @message.errors, status: :unprocessable_entity }
       end
     end
@@ -61,17 +47,17 @@ class MessagesController < ApplicationController
 
   # PATCH/PUT /messages/1
   # PATCH/PUT /messages/1.json
-  def update
-    respond_to do |format|
-      if @message.update(message_params)
-        format.html { redirect_to @message, notice: 'Message was successfully updated.' }
-        format.json { render :show, status: :ok, location: @message }
-      else
-        format.html { render :edit }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def update
+  #   respond_to do |format|
+  #     if @message.update(message_params)
+  #       format.html { redirect_to @message, notice: 'Message was successfully updated.' }
+  #       format.json { render :show, status: :ok, location: @message }
+  #     else
+  #       format.html { render :edit }
+  #       format.json { render json: @message.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /messages/1
   # DELETE /messages/1.json
