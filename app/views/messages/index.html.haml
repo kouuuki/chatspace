@@ -10,14 +10,15 @@
     %div.group-name-rigth
       =link_to "Edit",edit_group_path(params[:group_id]),class:"edit"
   -# メッセージ一覧
-  %div.section-right-bottom
+  %div.section-right-bottom#message-s
     %div.message-area
-      - @groupa.messages.each do |message|
-        =message.user.name
-        %i.time=message.created_at.strftime("%Y/%m/%d %H:%M:%S")
-        %div.message=simple_format(message.body)
-        - unless message.image.length == 0
-          =image_tag message.image,class:"image"
+      %div.message
+      -# - @groupa.messages.each do |message|
+      -#   =message.user.name
+      -#   %i.time=message.created_at.strftime("%Y/%m/%d %H:%M:%S")
+      -#   %div.message=simple_format(message.body)
+      -#   - unless message.image.length == 0
+      -#     =image_tag message.image,class:"image"
           %br
 
 

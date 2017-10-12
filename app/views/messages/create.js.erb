@@ -1,0 +1,6 @@
+//入力フォームを空にする
+$('#text-form').val("");
+//メッセージをrender
+$('.message').html("<%= j (render 'index') %>");
+//自動スクロール
+$('#message-s').animate({scrollTop:$('.message')[0].scrollHeight}, 2000);

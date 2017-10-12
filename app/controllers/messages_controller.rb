@@ -33,11 +33,16 @@ class MessagesController < ApplicationController
     @message.user_id = current_user.id
     @message.body = message_params[:body]
     @message.image = message_params[:image]
+    @groupa = Group.find(params[:group_id])
 
     respond_to do |format|
       if @message.save
-        format.html { redirect_to group_messages_path(params[:group_id]), notice: 'メッセージを送信しました' }
-        format.json { render :show, status: :created, location: @message }
+        # format.html { redirect_to group_messages_path(params[:group_id]), notice: 'メッセージを送信しました' }
+        # format.json { render :show, status: :created, location: @message }
+
+        #ajax TEST
+        format.html
+        format.js
       else
         format.html { redirect_to group_messages_path(params[:group_id]), notice: 'メッセージを入力してください' }
         format.json { render json: @message.errors, status: :unprocessable_entity }

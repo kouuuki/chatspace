@@ -173,8 +173,14 @@
       #result{
         line-height: 50px;
         padding: 15px;
-        li{
+        div{
         border-bottom: 1px solid #dcdcdc;
+        padding: 0 10px;
+        span{
+          float: right;
+          cursor: pointer;
+          color: blue;
+        }
         }
       }
     }
