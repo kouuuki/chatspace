@@ -32,8 +32,8 @@
   -#         %li= message
 
   .message-field
-    = f.text_area :body, class:"form-controll", id:"text-form", placeholder:"Type a Message"
-    = f.label :i, class: "fa fa-picture-o"
-    = f.file_field :image, style:"display:none;"
+    = f.text_field :body, class:"form-controll", id:"text-form", placeholder:"Type a Message"
+    %i.fa.fa-picture-o
+    = f.file_field :image, style:"display:none;", id:"file"
     .btm-area
       = f.submit 'Save',class:"square_btn",id:"btn"

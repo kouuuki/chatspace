@@ -20,6 +20,6 @@ $(document).on('turbolinks:load', function(){ //リロードしなくてもjsが
   });
 });
 
-$(document).on("click", "#tuika", function(){
-    $(this).css('color','red')
-});
+// $(document).on("click", "#tuika", function(){
+//     $(this).css('color','red')
+// });
