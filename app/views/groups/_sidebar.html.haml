@@ -7,7 +7,7 @@
   %div.section-left-bottom
     %ul.group-list
       -@user.groups.each do |group|
-        %li.select-group=link_to group.name,group_messages_path(group),class:"group-url"
+        %li.select-group=link_to group.name,group_messages_path(group), class:"group-url"
         -if group.messages.length == 0
           %p.last-message まだメッセージはありません
         -else

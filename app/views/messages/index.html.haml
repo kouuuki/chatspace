@@ -12,13 +12,13 @@
   -# メッセージ一覧
   %div.section-right-bottom#message-s
     %div.message-area.message
-      -# - @groupa.messages.each do |message|
-      -#   =message.user.name
-      -#   %i.time=message.created_at.strftime("%Y/%m/%d %H:%M:%S")
-      -#   %div.message=simple_format(message.body)
-      -#   - unless message.image.length == 0
-      -#     =image_tag message.image,class:"image"
-          %br
+      - @groupa.messages.each do |message|
+        .message-area
+          =message.user.name
+          =message.created_at.strftime("%Y/%m/%d %H:%M:%S")
+          =simple_format(message.body)
+          - unless message.image.length == 0
+            =image_tag message.image,class:"image"
 
 
   -#メッセージ送信エリア

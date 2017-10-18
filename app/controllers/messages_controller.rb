@@ -6,6 +6,10 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
+    respond_to do |format|
+      format.html
+      format.json
+    end
     #メッセージ本文
     @messages = Message.all
     @groupa = Group.find(params[:group_id])
@@ -27,6 +31,7 @@ class MessagesController < ApplicationController
   # POST /messages
   # POST /messages.json
   def create
+    
     @message = Message.new(message_params)
     @group = Group.where(:id => params[:group_id]).first
     @message = @group.messages.build
@@ -42,7 +47,7 @@ class MessagesController < ApplicationController
 
         #ajax TEST
         format.html
-        format.js
+        format.json { render 'messages', handlers: 'jbuilder' }
       else
         format.html { redirect_to group_messages_path(params[:group_id]), notice: 'メッセージを入力してください' }
         format.json { render json: @message.errors, status: :unprocessable_entity }
