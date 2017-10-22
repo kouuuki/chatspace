@@ -6,7 +6,7 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.json
   def index
-    @groups = Group.all
+    @groups = current_user.groups
     @user = User.find(current_user.id)
   end
 
@@ -61,8 +61,8 @@ class GroupsController < ApplicationController
 
   #インクリメンタルサーチ
   def search
-    @users = User.where('name LIKE(?)', "%#{params[:keyword]}%")
-    render json: @users
+    @users = User.where('name LIKE(?)', "%#{params[:name]}%")
+    #render json: @users
   end
 
   private
@@ -79,7 +79,7 @@ class GroupsController < ApplicationController
     #自分の所属しているグループ以外は編集できない
     def ensure_correct_user
       if Member.where(user_id: current_user.id ,group_id: params[:id]).length == 0
-        flash[:notice] = "かーえーれー"
+        flash[:notice] = "立ち入り禁止（･ε･)"
         redirect_to root_path
       end
     end

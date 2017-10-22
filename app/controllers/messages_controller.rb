@@ -1,24 +1,27 @@
 class MessagesController < ApplicationController
-  before_action :set_message, only: [:destroy]
+  before_action :set_message, only: [:show, :index]
   before_action :ensure_correct_user, only: [:index]
   before_action :authenticate_user!
 
   # GET /messages
   # GET /messages.json
   def index
-    respond_to do |format|
-      format.html
-      format.json
-    end
+    # respond_to do |format|
+    #   format.html
+    #   format.json
+    # end
     #メッセージ本文
-    @messages = Message.all
-    @groupa = Group.find(params[:group_id])
+    # @messages = Message.all
+    # @groupa = Group.find(params[:group_id])
     #サイドバー
-    @groups = Group.all
-    @user = User.find(current_user.id)
+    #@groups = Group.all
+    #@user = User.find(current_user.id)
     #メッセージ生成
-    @group = Group.where(:id => params[:group_id]).first
-    @message = @group.messages.build
+    #@group = Group.where(:id => params[:group_id]).first
+    #@message = @group.messages.build
+    @groups = current_user.groups
+    @message = Message.new
+    @messages = @group.messages
   end
 
   # GET /messages/new
@@ -28,17 +31,20 @@ class MessagesController < ApplicationController
     #@message = Message.new
   end
 
+  def show
+  end
+
   # POST /messages
   # POST /messages.json
   def create
-    
+
     @message = Message.new(message_params)
-    @group = Group.where(:id => params[:group_id]).first
-    @message = @group.messages.build
-    @message.user_id = current_user.id
-    @message.body = message_params[:body]
-    @message.image = message_params[:image]
-    @groupa = Group.find(params[:group_id])
+    #  @group = Group.where(:id => params[:group_id]).first
+    #  @message = @group.messages.build(message_params)
+    # @message.user_id = current_user.id
+    # @message.body = message_params[:body]
+    # @message.image = message_params[:image]
+    # @groupa = Group.find(params[:group_id])
 
     respond_to do |format|
       if @message.save
@@ -47,7 +53,7 @@ class MessagesController < ApplicationController
 
         #ajax TEST
         format.html
-        format.json { render 'messages', handlers: 'jbuilder' }
+        format.json { render 'show' }
       else
         format.html { redirect_to group_messages_path(params[:group_id]), notice: 'メッセージを入力してください' }
         format.json { render json: @message.errors, status: :unprocessable_entity }
@@ -82,18 +88,20 @@ class MessagesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_message
-      @message = Message.find(params[:id])
+      #@message = Message.find(params[:id])
+      @group = Group.find(params[:group_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
-      params.require(:message).permit(:body, :image, :group_id)
+      # params.require(:message).permit(:body, :image, :group_id)
+      params.require(:message).permit(:body,:image).merge(user_id: current_user.id, group_id: params[:group_id])
     end
 
     #自分の所属しているグループ以外には入れない
     def ensure_correct_user
       if Member.where(user_id: current_user.id ,group_id: params[:group_id]).length == 0
-        flash[:notice] = "かーえーれー"
+        flash[:notice] = "立ち入り禁止（･ε･)"
         redirect_to root_path
       end
     end

@@ -20,15 +20,31 @@
       %div.chat-group-form__field--left
         = f.label :チャットメンバーを追加,class:"chat-group-form__label",for:"chat_group_チャットメンバーを追加"
       %div.chat-group-form__field--right
-        = f.text_field :name,class:"chat-group-form__input",id:"search"
-        %div#result
+        -# = f.text_field :name,class:"chat-group-form__input",id:"search"
+        .chat-group-form__search.clearfix
+          %input#user-name.chat-group-form__input{placeholder: "追加したいユーザー", type: "text"}
+        #result
 
     %div.chat-group-form__field.clearfix
       %div.chat-group-form__field--left
         = f.label :チャットメンバー,class:"chat-group-form__label"
       %div.chat-group-form__field--right
-        = collection_check_boxes(:group, :user_ids, User.all, :id, :name) do |b|
-          = b.label {b.check_box + b.text}
+        #user-member
+          .chat-group-user.clearfix{'data-id': current_user.id}
+          = hidden_field_tag 'group[user_ids][]', current_user.id
+          %p.chat-group-user__name
+            = current_user.name
+        - @group.users.each do |u|
+          - unless u == current_user
+            .chat-group-user.clearfix{'data-id': current_user.id,id: "user_#{u.id}"}
+              = hidden_field_tag 'group[user_ids][]', u.id
+              %p.chat-group-user__name
+                = u.name
+              %a.user-remove.chat-group-user__btn.chat-group-user__btn--remove{"data-id": u.id, "data-name": u.name}
+                削除
+          -# = collection_check_boxes(:group, :user_ids, User.all, :id, :name) do |b|
+          -#   = b.label {b.check_box + b.text}
+
 
     %div.chat-group-form__field.clearfix
       %div.chat-group-form__field--left
