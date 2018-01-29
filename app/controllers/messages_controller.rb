@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :index]
   before_action :ensure_correct_user, only: [:index]
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
 
   # GET /messages
   # GET /messages.json
