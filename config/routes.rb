@@ -12,6 +12,6 @@ Rails.application.routes.draw do
   get '/users/search/:name', to: 'users#search'
   root 'groups#index'
 
-  post '/api/callback', to: 'callback#callback'
+  get '/api/callback', to: 'callback#callback'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
