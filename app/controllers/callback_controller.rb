@@ -8,6 +8,7 @@ class CallbackController < ApplicationController
   # end
 
   def callback
+    binding.pry
     token = "EAAOucPomWPoBALBWyWKbNT9bhICjg7eq039DW0HpGqGOVE53ShnVax95K08mqeMVzUW8NlJsbEZAnHSJ4ZBKOZCKxFZC6iomcZBwW8kcaoE7Rf8ta6Hi5Lp9DARGhK3lwpXhcO9dlhZCNuAyVp84UbciZA4QCZCvlxiTlm5vz8j5cSQWQ1PxFEZAoZBbPgAZCnFuogZD"
 
     message = params["entry"][0]["messaging"][0]
@@ -25,7 +26,6 @@ class CallbackController < ApplicationController
                         }
 
       content_json = request_content.to_json
-
       RestClient.post(endpoint_uri, content_json, {
         'Content-Type' => 'application/json; charset=UTF-8'
       }){ |response, request, result, &block|
