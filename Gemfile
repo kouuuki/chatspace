@@ -66,3 +66,4 @@ gem 'font-awesome-rails'
 gem 'haml-rails'
 gem 'devise'
 gem 'unicorn', group: :production
+gem 'rest-client'
