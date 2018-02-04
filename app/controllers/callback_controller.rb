@@ -25,7 +25,7 @@ class CallbackController < ApplicationController
       request_content = {recipient: {id:sender},
                          message: {text: text}
                         }
-      if text =~ /天気/
+      if text == "天気"
         button_structured_message_request_body(sender, "いつの天気？", *weather_buttons)
       end
       content_json = request_content.to_json
