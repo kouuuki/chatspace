@@ -9,11 +9,12 @@ class CallbackController < ApplicationController
 
   def callback
     # binding.pry
-    token = "EAAOucPomWPoBALBWyWKbNT9bhICjg7eq039DW0HpGqGOVE53ShnVax95K08mqeMVzUW8NlJsbEZAnHSJ4ZBKOZCKxFZC6iomcZBwW8kcaoE7Rf8ta6Hi5Lp9DARGhK3lwpXhcO9dlhZCNuAyVp84UbciZA4QCZCvlxiTlm5vz8j5cSQWQ1PxFEZAoZBbPgAZCnFuogZD"
+    token = "EAAOucPomWPoBAFMahDF2U3HGwaHdp1ZCmZAbh9WUFjQ9jMWK1W9cz42NqrUNoV4LOy7mfmHPTiyPnvicjerOCabmUzlOEhjvzKkwE2Szq0lyBKtfCIks8NlZAFkTWPP6WaheYelm7iEk6hyYw6qoXsyFNe0GktxckSZBAZBRrL9dEY3cvnEnXldMiA4Tq0eoZD"
 
     message = params["entry"][0]["messaging"][0]
     p params
     p message
+    puts "テストです"
 
 
 
