@@ -19,6 +19,7 @@ class CallbackController < ApplicationController
 
       sender = message["sender"]["id"]
       text = message["message"]["text"]
+      puts "テキストの中身は#{text}です。"
 
       endpoint_uri = "https://graph.facebook.com/v2.6/me/messages?access_token=" + token
       request_content = {recipient: {id:sender},
