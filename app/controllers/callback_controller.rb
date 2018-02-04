@@ -25,8 +25,10 @@ class CallbackController < ApplicationController
       request_content = {recipient: {id:sender},
                          message: {text: text}
                         }
+      puts "リクエストコンテントの中身"
+      p request_content
       if text == "天気"
-        button_structured_message_request_body(sender, "いつの天気？", weather_buttons)
+        button_structured_message_request_body(sender, "いつの天気？", *weather_buttons)
       end
       content_json = request_content.to_json
       RestClient.post(endpoint_uri, content_json, {
