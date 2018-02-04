@@ -37,7 +37,7 @@ class CallbackController < ApplicationController
       #botの発言
       # text
       # p "こんにちは"
-      if text == "天気"
+      if text =~ /天気/
         button_structured_message_request_body(sender, "いつの天気？", *weather_buttons)
       end
     end
