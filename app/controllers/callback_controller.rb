@@ -12,9 +12,10 @@ class CallbackController < ApplicationController
     token = "EAAOucPomWPoBALBWyWKbNT9bhICjg7eq039DW0HpGqGOVE53ShnVax95K08mqeMVzUW8NlJsbEZAnHSJ4ZBKOZCKxFZC6iomcZBwW8kcaoE7Rf8ta6Hi5Lp9DARGhK3lwpXhcO9dlhZCNuAyVp84UbciZA4QCZCvlxiTlm5vz8j5cSQWQ1PxFEZAoZBbPgAZCnFuogZD"
 
     message = params["entry"][0]["messaging"][0]
-    return message["message"]["text"]
+    p params
+    p message
 
-    
+
 
     # if message.include?("message")
     #
