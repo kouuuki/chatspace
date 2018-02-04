@@ -20,6 +20,9 @@ class CallbackController < ApplicationController
       sender = message["sender"]["id"]
       text = message["message"]["text"]
       puts "テキストの中身は#{text}です。"
+      if text == "天気"
+        button_structured_message_request_body(sender, "いつの天気？", *weather_buttons)
+      end
 
       endpoint_uri = "https://graph.facebook.com/v2.6/me/messages?access_token=" + token
       request_content = {recipient: {id:sender},
@@ -27,9 +30,8 @@ class CallbackController < ApplicationController
                         }
       puts "リクエストコンテントの中身"
       p request_content
-      if text == "天気"
-        button_structured_message_request_body(sender, "いつの天気？", *weather_buttons)
-      end
+
+
       content_json = request_content.to_json
       RestClient.post(endpoint_uri, content_json, {
         'Content-Type' => 'application/json; charset=UTF-8'
