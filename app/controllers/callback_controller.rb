@@ -24,7 +24,9 @@ class CallbackController < ApplicationController
       request_content = {recipient: {id:sender},
                          message: {text: text}
                         }
-
+      if text =~ /天気/
+        button_structured_message_request_body(sender, "いつの天気？", *weather_buttons)
+      end
       content_json = request_content.to_json
       RestClient.post(endpoint_uri, content_json, {
         'Content-Type' => 'application/json; charset=UTF-8'
@@ -37,12 +39,10 @@ class CallbackController < ApplicationController
       #botの発言
       # text
       # p "こんにちは"
-      if text =~ /天気/
-        button_structured_message_request_body(sender, "いつの天気？", *weather_buttons)
-      end
     end
   end
 
+  #天気ボタンのメソッド
   def button_structured_message_request_body(sender, text, *buttons)
   {
     recipient: {
@@ -60,7 +60,7 @@ class CallbackController < ApplicationController
     }
   }.to_json
 end
-
+#天気ボタンのメソッド
 def weather_buttons
   [
     {
