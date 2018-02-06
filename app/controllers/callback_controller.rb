@@ -1,4 +1,5 @@
 class CallbackController < ApplicationController
+  protect_from_forgery :except => [:callback]
   # def callback
   #   if params["hub.verify_token"] == "hogehoge"
   #     render json: params["hub.challenge"]
