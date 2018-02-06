@@ -11,7 +11,7 @@ class CallbackController < ApplicationController
   def button_structured_message_request_body(sender, text, *buttons)
     {
       recipient: {
-        id: sender,
+        id: sender
       },
       message: {
         attachment: {
@@ -68,7 +68,7 @@ end
       puts "リクエストコンテント"
       p request_content
       button_structured_message_request_body(sender, "いつの天気？", *weather_buttons)
-      if text == "天気"
+      if text =~ /天気/
         button_structured_message_request_body(sender, "いつの天気？", *weather_buttons)
       end
       content_json = request_content.to_json
