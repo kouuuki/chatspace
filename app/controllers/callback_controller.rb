@@ -8,22 +8,22 @@ class CallbackController < ApplicationController
   # end
   #天気ボタンのメソッド
   def button_structured_message_request_body(sender, text, *buttons)
-  {
-    recipient: {
-      id: sender
-    },
-    message: {
-      attachment: {
-        type: "template",
-        payload: {
-          template_type: "button",
-          text: text,
-          buttons: buttons
+    {
+      recipient: {
+        id: sender,
+      },
+      message: {
+        attachment: {
+          type: "template",
+          payload: {
+            template_type: "button",
+            text: text,
+            buttons: buttons
+          }
         }
       }
-    }
-  }.to_json
-end
+    }.to_json
+  end
 #天気ボタンのメソッド
 def weather_buttons
   [
@@ -58,7 +58,7 @@ end
 
       sender = message["sender"]["id"]
       text = message["message"]["text"]
-      puts "テキストの中身は#{text}です。"
+      p text
 
       endpoint_uri = "https://graph.facebook.com/v2.6/me/messages?access_token=" + token
       request_content = {recipient: {id:sender},
@@ -66,6 +66,7 @@ end
                         }
       puts "リクエストコンテント"
       p request_content
+      button_structured_message_request_body(sender, "いつの天気？", *weather_buttons)
       if text == "天気"
         button_structured_message_request_body(sender, "いつの天気？", *weather_buttons)
       end
@@ -78,6 +79,7 @@ end
         p result
       }
     else
+      button_structured_message_request_body(sender, "いつの天気？", *weather_buttons)
       #botの発言
       # text
       # p "こんにちは"
