@@ -62,7 +62,8 @@ end
       p text
 
       endpoint_uri = "https://graph.facebook.com/v2.6/me/messages?access_token=" + token
-      request_content = {recipient: {id:sender},
+      request_content = {
+                         recipient: {id:sender},
                          message: {text: text}
                         }
       puts "リクエストコンテント"
