@@ -76,9 +76,9 @@ end
       RestClient.post(endpoint_uri, content_json, {
         'Content-Type' => 'application/json; charset=UTF-8'
       }){ |response, request, result, &block|
-        p response
-        p request
-        p result
+        # p response
+        # p request
+        # p result
       }
     else
       button_structured_message_request_body(sender, "いつの天気？", *weather_buttons)
