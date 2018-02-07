@@ -68,12 +68,16 @@ end
                         }
       puts "リクエストコンテント"
       p request_content
-      button_structured_message_request_body(sender, "いつの天気？", *weather_buttons)
-      if text =~ /天気/
-        button_structured_message_request_body(sender, "いつの天気？", *weather_buttons)
-      end
+      # button_structured_message_request_body(sender, "いつの天気？", *weather_buttons)
+      request_message =
+        if text =~ /天気/
+          button_structured_message_request_body(sender, "いつの天気？", *weather_buttons)
+        else
+          request_content.to_json
+        end
+
       content_json = request_content.to_json
-      RestClient.post(endpoint_uri, button_structured_message_request_body(sender, "いつの天気？", *weather_buttons), {
+      RestClient.post(request_message), {
         'Content-Type' => 'application/json; charset=UTF-8'
       }){ |response, request, result, &block|
         # p response
