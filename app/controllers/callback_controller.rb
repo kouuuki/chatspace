@@ -76,6 +76,9 @@ end
           request_content.to_json
         end
 
+        puts "リクエストメッセージです"
+        p request_message
+
       content_json = request_content.to_json
       RestClient.post(request_message), {
         'Content-Type' => 'application/json; charset=UTF-8'
