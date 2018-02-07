@@ -72,23 +72,20 @@ end
       request_message =
         if text =~ /天気/
           button_structured_message_request_body(sender, "いつの天気？", *weather_buttons)
-        else
-          request_content.to_json
         end
-
-        puts "リクエストメッセージです"
+        puts "中身"
         p request_message
-
+        
       content_json = request_content.to_json
-      RestClient.post(request_message), {
+      RestClient.post(endpoint_uri, button_structured_message_request_body(sender, "いつの天気？", *weather_buttons), {
         'Content-Type' => 'application/json; charset=UTF-8'
-      }#){ |response, request, result, &block|
+      }){ |response, request, result, &block|
         # p response
         # p request
         # p result
-      # }
+      }
     else
-      # button_structured_message_request_body(sender, "いつの天気？", *weather_buttons)
+      button_structured_message_request_body(sender, "いつの天気？", *weather_buttons)
       #botの発言
       # text
       # p "こんにちは"
