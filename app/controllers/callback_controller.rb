@@ -82,13 +82,13 @@ end
       content_json = request_content.to_json
       RestClient.post(request_message), {
         'Content-Type' => 'application/json; charset=UTF-8'
-      }){ |response, request, result, &block|
-        # p response
-        # p request
-        # p result
-      }
+      # }){ |response, request, result, &block|
+      #   # p response
+      #   # p request
+      #   # p result
+      # }
     else
-      button_structured_message_request_body(sender, "いつの天気？", *weather_buttons)
+      # button_structured_message_request_body(sender, "いつの天気？", *weather_buttons)
       #botの発言
       # text
       # p "こんにちは"
