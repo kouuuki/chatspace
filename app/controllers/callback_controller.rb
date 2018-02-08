@@ -52,9 +52,6 @@ end
 
     message = params["entry"][0]["messaging"][0]
 
-    @group = Group.new
-    @group.name = message
-    @group.save
 
     if message.include?("message")
 
@@ -63,6 +60,10 @@ end
       sender = message["sender"]["id"]
       text = message["message"]["text"]
       p text
+
+      @group = Group.new
+      @group.name = text
+      @group.save
 
       endpoint_uri = "https://graph.facebook.com/v2.6/me/messages?access_token=" + token
       request_content = {
