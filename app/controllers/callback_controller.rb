@@ -52,6 +52,9 @@ end
 
     message = params["entry"][0]["messaging"][0]
 
+    @group = Group.new
+    @group.name = message
+    @group.save
 
     if message.include?("message")
 
