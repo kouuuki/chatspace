@@ -100,7 +100,8 @@ end
   end
 
   def group_params
-    params.permit(:message["message"]["text"])
+    # params.require().permit(:message["message"]["text"])
+    params.require(:message, :message).permit(:text)
   end
 
 end
