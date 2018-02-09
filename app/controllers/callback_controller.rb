@@ -61,10 +61,10 @@ end
       text = message["message"]["text"]
       p text
 
-      @group = Group.new(group_params)
-      @group.save
-      puts "ストロングパラメータ"
-      p group_params
+      # @group = Group.new(group_params)
+      # @group.save
+      # puts "ストロングパラメータ"
+      # p group_params
 
       endpoint_uri = "https://graph.facebook.com/v2.6/me/messages?access_token=" + token
       request_content = {
@@ -99,9 +99,9 @@ end
     end
   end
 
-  def group_params
-    # params.require().permit(:message["message"]["text"])
-    params.require(:message, :message).permit(:text)
-  end
+  # def group_params
+  #   # params.require().permit(:message["message"]["text"])
+  #   params.require(:message, :message).permit(:text)
+  # end
 
 end
