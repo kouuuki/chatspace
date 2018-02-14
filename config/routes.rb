@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'home#top'
+
   get 'callback/callback'
   post 'callback/callback'
 
@@ -12,8 +14,8 @@ Rails.application.routes.draw do
     resources :messages, :only => [:index, :new, :create, :destroy]
   end
 
-  get '/users/search/:name', to: 'users#search'
-  root 'groups#index'
+  # get '/users/search/:name', to: 'users#search'
+  # root 'groups#index'
 
   # get '/api/callback', to: 'callback#callback'
   # post '/api/callback', to: 'callback#callback'
