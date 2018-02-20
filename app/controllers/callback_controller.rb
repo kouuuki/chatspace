@@ -48,7 +48,7 @@ end
 
 #コールバックメソッド
   def callback
-    token = "EAAOucPomWPoBAFMahDF2U3HGwaHdp1ZCmZAbh9WUFjQ9jMWK1W9cz42NqrUNoV4LOy7mfmHPTiyPnvicjerOCabmUzlOEhjvzKkwE2Szq0lyBKtfCIks8NlZAFkTWPP6WaheYelm7iEk6hyYw6qoXsyFNe0GktxckSZBAZBRrL9dEY3cvnEnXldMiA4Tq0eoZD"
+    token = ""
 
     message = params["entry"][0]["messaging"][0]
 
