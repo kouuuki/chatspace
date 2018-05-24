@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
   before_action :ensure_correct_user, only: [:edit]
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
 
   # GET /groups
   # GET /groups.json
@@ -22,6 +22,7 @@ class GroupsController < ApplicationController
   # POST /groups
   # POST /groups.json
   def create
+    # binding.pry
     @group = Group.new(group_params)
 
     respond_to do |format|
@@ -29,8 +30,8 @@ class GroupsController < ApplicationController
         format.html { redirect_to root_path, notice: 'グループを作成しました' }
         format.json { render :show, status: :created, location: @group }
       else
-        format.html { render :new }
-        format.json { render json: @group.errors, status: :unprocessable_entity }
+        format.html { render :index }
+        # format.json { render json: @group.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -78,8 +79,8 @@ class GroupsController < ApplicationController
 
     #自分の所属しているグループ以外は編集できない
     def ensure_correct_user
-      if Member.where(user_id: current_user.id ,group_id: params[:id]).length == 0
-        flash[:notice] = "立ち入り禁止（･ε･)"
+      if Member.where(user_id: current_user.id, group_id: params[:id]) == nil
+        flash[:notice] = "入れません"
         redirect_to root_path
       end
     end
