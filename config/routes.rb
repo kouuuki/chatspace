@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  root 'home#top'
+  root 'groups#index'
 
-  get 'callback/callback'
-  post 'callback/callback'
+  # get 'callback/callback'
+  # post 'callback/callback'
 
   devise_for :users
   resources :users, :only => [:edit, :update, :destroy]
